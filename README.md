@@ -1,2 +1,7 @@
-# Compiladores
-Proyecto final de la clase de diseño de compiladores EM17
+# Traductor JSON to XML
+Final project 
+
+RUN LEX
+lex json.l
+gcc lex.yy.c -lfl 
+./a.out test.txt
