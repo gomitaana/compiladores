@@ -13,7 +13,7 @@ STRINGSYMBOL "\""
 COMMA "\,"
 DOUBLEPOINT "\:"
 
-WHITESPACE "\t"|"\n"|" "
+WHITESPACE "\t"|" "
 DIGIT1to9 [1-9]
 DIGIT [0-9]
 DIGITS {DIGIT}+
@@ -31,9 +31,30 @@ WORD [a-zA-z]+
 STRING {STRINGSYMBOL}({WORD}|{NUMBER}|{WHITESPACE})*{STRINGSYMBOL}
 
 %%
-[\t]
 
-{OPENPAR} {printf("hi");}
-{CLOSEPAR} {printf("bye");}
+{OPENBRA} printf("OPENBRA ");
+{CLOSEBRA} printf("CLOSEBRA ");
+{OPENPAR} printf("OPENPAR ");
+{CLOSEPAR} printf("CLOSEPAR ");
+{OPENARRAY} printf("OPENARRAY ");
+{CLOSEARRAY} printf("CLOSEARRAY ");
+{STRINGSYMBOL} printf("STRINGSYMBOL ");
+{COMMA} printf("COMMA ");
+{DOUBLEPOINT} printf("DOUBLEPOINT ");
+{WHITESPACE} printf("WHITESPACE ");
+{DIGIT1to9} printf("DIGIT1to9 ");
+{DIGIT} printf("DIGIT ");
+{DIGITS} printf("DIGITS ");
+{INT} printf("INT ");
+{FRAC} printf("FRAC ");
+{EXP} printf("EXP ");
+{E} printf("E ");
+{HEX_DIGIT} printf("HEX_DIGIT ");
+{NUMBER} printf("NUMBER ");
+{TRUE} printf("TRUE ");
+{FALSE} printf("FALSE ");
+{NULL} printf("NULL ");
+{WORD} printf("WORD ");
+{STRING} printf("STRING ");
 
 %%
