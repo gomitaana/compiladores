@@ -29,31 +29,31 @@ FALSE "false"
 NULL "null"
 WORD [a-zA-z]+
 STRING {STRINGSYMBOL}({WORD}|{NUMBER}|{WHITESPACE})*{STRINGSYMBOL}
-TAG {STRINGSYMBOL}({WORD}|{NUMBER}|{WHITESPACE})*{STRINGSYMBOL}:
+TAG {STRINGSYMBOL}({WORD}|{NUMBER}|{WHITESPACE})*{STRINGSYMBOL}DOUBLEPOINT
 
 %%
-{OPENBRA} printf("OPENBRA ");
-{CLOSEBRA} printf("CLOSEBRA ");
-{OPENPAR} printf("OPENPAR ");
-{CLOSEPAR} printf("CLOSEPAR ");
-{OPENARRAY} printf("OPENARRAY ");
-{CLOSEARRAY} printf("CLOSEARRAY ");
-{STRINGSYMBOL} printf("STRINGSYMBOL ");
-{COMMA} printf("COMMA ");
-{DOUBLEPOINT} printf("DOUBLEPOINT ");
-{DIGIT1to9} printf("DIGIT1to9 ");
-{DIGIT} printf("DIGIT ");
-{DIGITS} printf("DIGITS ");
-{INT} printf("INT ");
-{FRAC} printf("FRAC ");
-{EXP} printf("EXP ");
-{E} printf("E ");
-{HEX_DIGIT} printf("HEX_DIGIT ");
-{NUMBER} printf("NUMBER ");
-{TRUE} printf("TRUE ");
-{FALSE} printf("FALSE ");
-{NULL} printf("NULL ");
-{WORD} printf("WORD ");
-{STRING} printf("STRING ");
-
+{OPENBRA} {return (OPENBRA);}
+{CLOSEBRA} {return (CLOSEBRA);}
+{OPENPAR} {return (OPENPAR);}
+{CLOSEPAR} {return (CLOSEPAR);}
+{OPENARRAY} {return (OPENARRAY);}
+{CLOSEARRAY} {return (CLOSEARRAY);}
+{STRINGSYMBOL} {return (STRINGSYMBOL);}
+{COMMA} {return (COMMA);}
+{DOUBLEPOINT} {return (DOUBLEPOINT);}
+{DIGIT1to9} {return (DIGIT1to9);}
+{DIGIT} {return (DIGIT);}
+{DIGITS} {return (DIGITS);}
+{INT} {return (INT);}
+{FRAC} {return (FRAC);}
+{EXP} {return (EXP);}
+{E} {return (E);}
+{HEX_DIGIT} {return (HEX_DIGIT);}
+{NUMBER} {return (NUMBER);}
+{TRUE} {return (TRUE);}
+{FALSE} {return (FALSE);}
+{NULL} {return (NULL);}
+{WORD} {return (WORD);}
+{STRING} {return (STRING);}
+{TAG} {return (TAG);}
 %%
