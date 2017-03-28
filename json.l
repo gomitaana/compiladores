@@ -1,4 +1,5 @@
 %{
+#include "y.tab.h"
 #include <stdlib.h>
 #include <stdio.h>
 %}
@@ -24,14 +25,18 @@ E [eE][+-]?
 HEX_DIGIT [0-9a-f]
 NUMBER {INT}|{INT}{FRAC}|{INT}{EXP}|{INT}{FRAC}{EXP}
 
-TRUE "true"
-FALSE "false"
-NULL "null"
+TRUE_J "true"
+FALSE_J "false"
+NULL_J "null"
 WORD [a-zA-z]+
 STRING {STRINGSYMBOL}({WORD}|{NUMBER}|{WHITESPACE})*{STRINGSYMBOL}
 TAG {STRINGSYMBOL}({WORD}|{NUMBER}|{WHITESPACE})*{STRINGSYMBOL}DOUBLEPOINT
 
 %%
+[\t]
+
+{STRING} {return (STRING);}
+
 {OPENBRA} {return (OPENBRA);}
 {CLOSEBRA} {return (CLOSEBRA);}
 {OPENPAR} {return (OPENPAR);}
@@ -50,10 +55,9 @@ TAG {STRINGSYMBOL}({WORD}|{NUMBER}|{WHITESPACE})*{STRINGSYMBOL}DOUBLEPOINT
 {E} {return (E);}
 {HEX_DIGIT} {return (HEX_DIGIT);}
 {NUMBER} {return (NUMBER);}
-{TRUE} {return (TRUE);}
-{FALSE} {return (FALSE);}
-{NULL} {return (NULL);}
-{WORD} {return (WORD);}
-{STRING} {return (STRING);}
+{TRUE_J} {return (TRUE_J);}
+{FALSE_J} {return (FALSE_J);}
+{NULL_J} {return (NULL_J);}
 {TAG} {return (TAG);}
+
 %%

@@ -14,15 +14,15 @@ int sym[26];
 {
     long long int int_v;
     long double float_v;
-    bool bool_v;
-    bool null_p;
+    int bool_v;
+    int null_p;
     char* string_v;
 } 
 /** Define types for union values */
-%type<string_v> DOUBLE_QUOTED_STRING SINGLE_QUOTED_STRING STRING
+//%type<string_v> DOUBLE_QUOTED_STRING SINGLE_QUOTED_STRING STRING
 %type<int_v> NUMBER_I
 %type<float_v> NUMBER_F
-%type<bool_v> BOOLEANlex json.l
+//%type<bool_v> BOOLEAN
 
 
 //Tokens
@@ -31,34 +31,40 @@ int sym[26];
 %token OPENBRA CLOSEBRA OPENPAR CLOSEPAR OPENARRAY CLOSEARRAY
 %token STRINGSYMBOL COMMA DOUBLEPOINT
 %token DIGIT1to9 DIGIT DIGITS
-token INT FRAC EXP E HEX_DIGIT
-%token TRUE FALSE NULL
+%token INT FRAC EXP E HEX_DIGIT
+%token TRUE_J FALSE_J NULL_J
 
 %start interpreter
 
 %%
 
-interpreter: OPENBRA content CLOSEBRA
+interpreter: OPENBRA content CLOSEBRA {printf("Main");}
+    | {printf("error on interpreter"); return -1;}
 ;
 	    
-content: TAG DOUBLEPOINT valueList 
-    | content COMMA TAG DOUBLEPOINT valueList
+content: STRING DOUBLEPOINT valueList 
+    | content COMMA STRING DOUBLEPOINT valueList
+    | {printf("error on content"); return -1;}
 ;
 
 valueList: attribute
     | array
-    | object
+    | OPENBRA object CLOSEBRA
+    | {printf("error on valueList"); return -1;}
 ;
 
-object: TAG DOUBLEPOINT valueList 
-    | object COMMA TAG DOUBLEPOINT valueList
+object: STRING DOUBLEPOINT valueList 
+    | object COMMA STRING DOUBLEPOINT valueList
+    | {printf("error on object"); return -1;}
 ;
 
 array: OPENARRAY arrayItems CLOSEARRAY
+    | {printf("error on array"); return -1;}
 ;
 
 arrayItems: attribute
     | arrayItems COMMA attribute
+    | {printf("error on array"); return -1;}
 ;
 
 attribute:  STRING
@@ -66,6 +72,7 @@ attribute:  STRING
     | DIGIT1to9
     | DIGIT
     | DIGITS
+    | {printf("error on attribute"); return -1;}
 ;
 
 %%

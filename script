@@ -1,0 +1,4 @@
+yacc json.y
+yacc -d json.y
+lex json.l
+cc lex.yy.c y.tab.c -o json  -lfl

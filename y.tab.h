@@ -60,15 +60,14 @@ extern int yydebug;
     DIGIT1to9 = 270,
     DIGIT = 271,
     DIGITS = 272,
-    token = 273,
-    INT = 274,
-    FRAC = 275,
-    EXP = 276,
-    E = 277,
-    HEX_DIGIT = 278,
-    TRUE = 279,
-    FALSE = 280,
-    NULL = 281
+    INT = 273,
+    FRAC = 274,
+    EXP = 275,
+    E = 276,
+    HEX_DIGIT = 277,
+    TRUE_J = 278,
+    FALSE_J = 279,
+    NULL_J = 280
   };
 #endif
 /* Tokens.  */
@@ -87,15 +86,14 @@ extern int yydebug;
 #define DIGIT1to9 270
 #define DIGIT 271
 #define DIGITS 272
-#define token 273
-#define INT 274
-#define FRAC 275
-#define EXP 276
-#define E 277
-#define HEX_DIGIT 278
-#define TRUE 279
-#define FALSE 280
-#define NULL 281
+#define INT 273
+#define FRAC 274
+#define EXP 275
+#define E 276
+#define HEX_DIGIT 277
+#define TRUE_J 278
+#define FALSE_J 279
+#define NULL_J 280
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -106,11 +104,11 @@ union YYSTYPE
 
     long long int int_v;
     long double float_v;
-    bool bool_v;
-    bool null_p;
+    int bool_v;
+    int null_p;
     char* string_v;
 
-#line 114 "y.tab.h" /* yacc.c:1909  */
+#line 112 "y.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
