@@ -46,54 +46,58 @@ extern int yydebug;
   enum yytokentype
   {
     NUMBER = 258,
-    STRING = 259,
-    TAG = 260,
-    OPENBRA = 261,
-    CLOSEBRA = 262,
-    OPENPAR = 263,
-    CLOSEPAR = 264,
-    OPENARRAY = 265,
-    CLOSEARRAY = 266,
-    STRINGSYMBOL = 267,
-    COMMA = 268,
-    DOUBLEPOINT = 269,
-    DIGIT1to9 = 270,
-    DIGIT = 271,
-    DIGITS = 272,
-    INT = 273,
-    FRAC = 274,
-    EXP = 275,
-    E = 276,
-    HEX_DIGIT = 277,
-    TRUE_J = 278,
-    FALSE_J = 279,
-    NULL_J = 280
+    NUMBER_I = 259,
+    DIGITS = 260,
+    DIGIT1to9 = 261,
+    DIGIT = 262,
+    NUMBER_F = 263,
+    STRING = 264,
+    TAG = 265,
+    OPENBRA = 266,
+    CLOSEBRA = 267,
+    OPENPAR = 268,
+    CLOSEPAR = 269,
+    OPENARRAY = 270,
+    CLOSEARRAY = 271,
+    STRINGSYMBOL = 272,
+    COMMA = 273,
+    DOUBLEPOINT = 274,
+    INT = 275,
+    FRAC = 276,
+    EXP = 277,
+    E = 278,
+    HEX_DIGIT = 279,
+    TRUE_J = 280,
+    FALSE_J = 281,
+    NULL_J = 282
   };
 #endif
 /* Tokens.  */
 #define NUMBER 258
-#define STRING 259
-#define TAG 260
-#define OPENBRA 261
-#define CLOSEBRA 262
-#define OPENPAR 263
-#define CLOSEPAR 264
-#define OPENARRAY 265
-#define CLOSEARRAY 266
-#define STRINGSYMBOL 267
-#define COMMA 268
-#define DOUBLEPOINT 269
-#define DIGIT1to9 270
-#define DIGIT 271
-#define DIGITS 272
-#define INT 273
-#define FRAC 274
-#define EXP 275
-#define E 276
-#define HEX_DIGIT 277
-#define TRUE_J 278
-#define FALSE_J 279
-#define NULL_J 280
+#define NUMBER_I 259
+#define DIGITS 260
+#define DIGIT1to9 261
+#define DIGIT 262
+#define NUMBER_F 263
+#define STRING 264
+#define TAG 265
+#define OPENBRA 266
+#define CLOSEBRA 267
+#define OPENPAR 268
+#define CLOSEPAR 269
+#define OPENARRAY 270
+#define CLOSEARRAY 271
+#define STRINGSYMBOL 272
+#define COMMA 273
+#define DOUBLEPOINT 274
+#define INT 275
+#define FRAC 276
+#define EXP 277
+#define E 278
+#define HEX_DIGIT 279
+#define TRUE_J 280
+#define FALSE_J 281
+#define NULL_J 282
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -104,11 +108,12 @@ union YYSTYPE
 
     long long int int_v;
     long double float_v;
+    int int_j;
     int bool_v;
     int null_p;
     char* string_v;
 
-#line 112 "y.tab.h" /* yacc.c:1909  */
+#line 117 "y.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
