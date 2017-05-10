@@ -2,6 +2,7 @@
     #include<stdio.h>
     #include "y.tab.h"
     char *strclone(char *str);
+    char *getAllButFirstAndLast(char *input);
     /*
     #define STRING "str"
     #define NUMBER "number"
@@ -80,6 +81,16 @@ char *strclone(char *str)
 {
     int len = strlen(str);
     char *clone = (char *)malloc(sizeof(char)*(len+1));
-    strcpy(clone,str);
+    strcpy(clone,getAllButFirstAndLast(str));
     return clone;
+}
+
+char * getAllButFirstAndLast(char *input)
+{
+  int len = strlen(input); 
+  if(len > 0)
+    input++;//Go past the first char
+  if(len > 1)
+    input[len - 2] = '\0';//Replace the last char with a null termination
+  return input;
 }

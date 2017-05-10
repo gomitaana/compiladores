@@ -504,6 +504,7 @@ char *yytext;
     #include<stdio.h>
     #include "y.tab.h"
     char *strclone(char *str);
+    char *getAllButFirstAndLast(char *input);
     /*
     #define STRING "str"
     #define NUMBER "number"
@@ -513,7 +514,7 @@ char *yytext;
     #define A_END "a_end"
     #define COMMA "comma"
     */
-#line 517 "lex.yy.c"
+#line 518 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -700,9 +701,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 30 "json.l"
+#line 31 "json.l"
 
-#line 706 "lex.yy.c"
+#line 707 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -786,10 +787,10 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
-#line 32 "json.l"
+#line 33 "json.l"
 case 2:
 YY_RULE_SETUP
-#line 32 "json.l"
+#line 33 "json.l"
 {
     yylval=strclone(yytext);
     return STRING;
@@ -797,7 +798,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 36 "json.l"
+#line 37 "json.l"
 {
     yylval=strclone(yytext);
     return NUMBER;
@@ -805,63 +806,63 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 40 "json.l"
+#line 41 "json.l"
 {
     return true;
 };
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 43 "json.l"
+#line 44 "json.l"
 {
     return false;
 };
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 46 "json.l"
+#line 47 "json.l"
 {
     return null;
 };
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 49 "json.l"
+#line 50 "json.l"
 {
     return O_BEGIN;
 };
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 53 "json.l"
+#line 54 "json.l"
 {
     return O_END;
 };
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 57 "json.l"
+#line 58 "json.l"
 {
     return A_BEGIN;
 };
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 61 "json.l"
+#line 62 "json.l"
 {
     return A_END;
 };
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 65 "json.l"
+#line 66 "json.l"
 {
     return COMMA;
 };
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 68 "json.l"
+#line 69 "json.l"
 {
     return COLON;
 };
@@ -869,12 +870,12 @@ YY_RULE_SETUP
 case 13:
 /* rule 13 can match eol */
 YY_RULE_SETUP
-#line 72 "json.l"
+#line 73 "json.l"
 /* ignore whitespace */;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 74 "json.l"
+#line 75 "json.l"
 {
     printf("Unexpected: %c\nExiting...\n",*yytext);
     exit(0);
@@ -882,10 +883,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 78 "json.l"
+#line 79 "json.l"
 ECHO;
 	YY_BREAK
-#line 889 "lex.yy.c"
+#line 890 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1883,14 +1884,23 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 78 "json.l"
+#line 79 "json.l"
 
 
 char *strclone(char *str)
 {
     int len = strlen(str);
     char *clone = (char *)malloc(sizeof(char)*(len+1));
-    strcpy(clone,str);
+    strcpy(clone,getAllButFirstAndLast(str));
     return clone;
 }
 
+char * getAllButFirstAndLast(char *input)
+{
+  int len = strlen(input); 
+  if(len > 0)
+    input++;//Go past the first char
+  if(len > 1)
+    input[len - 2] = '\0';//Replace the last char with a null termination
+  return input;
+}
