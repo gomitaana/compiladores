@@ -46,75 +46,34 @@ extern int yydebug;
   enum yytokentype
   {
     NUMBER = 258,
-    NUMBER_I = 259,
-    DIGITS = 260,
-    DIGIT1to9 = 261,
-    DIGIT = 262,
-    NUMBER_F = 263,
-    STRING = 264,
-    TAG = 265,
-    OPENBRA = 266,
-    CLOSEBRA = 267,
-    OPENPAR = 268,
-    CLOSEPAR = 269,
-    OPENARRAY = 270,
-    CLOSEARRAY = 271,
-    STRINGSYMBOL = 272,
-    COMMA = 273,
-    DOUBLEPOINT = 274,
-    INT = 275,
-    FRAC = 276,
-    EXP = 277,
-    E = 278,
-    HEX_DIGIT = 279,
-    TRUE_J = 280,
-    FALSE_J = 281,
-    NULL_J = 282
+    STRING = 259,
+    true = 260,
+    false = 261,
+    null = 262,
+    O_BEGIN = 263,
+    O_END = 264,
+    A_BEGIN = 265,
+    A_END = 266,
+    COMMA = 267,
+    COLON = 268
   };
 #endif
 /* Tokens.  */
 #define NUMBER 258
-#define NUMBER_I 259
-#define DIGITS 260
-#define DIGIT1to9 261
-#define DIGIT 262
-#define NUMBER_F 263
-#define STRING 264
-#define TAG 265
-#define OPENBRA 266
-#define CLOSEBRA 267
-#define OPENPAR 268
-#define CLOSEPAR 269
-#define OPENARRAY 270
-#define CLOSEARRAY 271
-#define STRINGSYMBOL 272
-#define COMMA 273
-#define DOUBLEPOINT 274
-#define INT 275
-#define FRAC 276
-#define EXP 277
-#define E 278
-#define HEX_DIGIT 279
-#define TRUE_J 280
-#define FALSE_J 281
-#define NULL_J 282
+#define STRING 259
+#define true 260
+#define false 261
+#define null 262
+#define O_BEGIN 263
+#define O_END 264
+#define A_BEGIN 265
+#define A_END 266
+#define COMMA 267
+#define COLON 268
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE YYSTYPE;
-union YYSTYPE
-{
-#line 14 "json.y" /* yacc.c:1909  */
-
-    long long int int_v;
-    long double float_v;
-    int int_j;
-    int bool_v;
-    int null_p;
-    char* string_v;
-
-#line 117 "y.tab.h" /* yacc.c:1909  */
-};
+typedef int YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

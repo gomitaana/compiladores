@@ -1,20 +1,17 @@
 %{
-#include "y.tab.h"
-#include <stdlib.h>
-#include <stdio.h>
+    #include<stdio.h>
+    #include "y.tab.h"
+    char *strclone(char *str);
+    /*
+    #define STRING "str"
+    #define NUMBER "number"
+    #define O_BEGIN "o_begin"
+    #define O_END "o_end"
+    #define A_BEGIN "a_begin"
+    #define A_END "a_end"
+    #define COMMA "comma"
+    */
 %}
-
-OPENBRA "\{"
-CLOSEBRA "\}"
-OPENPAR "\("
-CLOSEPAR "\)"
-OPENARRAY "\["
-CLOSEARRAY "\]"
-STRINGSYMBOL "\""
-COMMA "\,"
-DOUBLEPOINT "\:"
-
-WHITESPACE "\t"|" "
 DIGIT1to9 [1-9]
 DIGIT [0-9]
 DIGITS {DIGIT}+
@@ -24,40 +21,65 @@ EXP {E}{DIGITS}
 E [eE][+-]?
 HEX_DIGIT [0-9a-f]
 NUMBER {INT}|{INT}{FRAC}|{INT}{EXP}|{INT}{FRAC}{EXP}
-
-TRUE_J "true"
-FALSE_J "false"
-NULL_J "null"
-WORD [a-zA-z]+
-STRING {STRINGSYMBOL}({WORD}|{NUMBER}|{WHITESPACE})*{STRINGSYMBOL}
-TAG {STRINGSYMBOL}({WORD}|{NUMBER}|{WHITESPACE})*{STRINGSYMBOL}DOUBLEPOINT
-
+UNESCAPEDCHAR [ -!#-\[\]-~]
+ESCAPEDCHAR \\["\\bfnrt/]
+UNICODECHAR \\u{HEX_DIGIT}{HEX_DIGIT}{HEX_DIGIT}{HEX_DIGIT}
+CHAR {UNESCAPEDCHAR}|{ESCAPEDCHAR}|{UNICODECHAR}
+CHARS {CHAR}+
+DBL_QUOTE ["]
 %%
-[\t]
+{DBL_QUOTE}{DBL_QUOTE} |
+{DBL_QUOTE}{CHARS}{DBL_QUOTE} {
+    yylval=strclone(yytext);
+    return STRING;
+};
+{NUMBER} {
+    yylval=strclone(yytext);
+    return NUMBER;
+}
+true {
+    return true;
+};
+false {
+    return false;
+};
+null {
+    return null;
+};
+\{ {
+    return O_BEGIN;
+};
 
-{STRING} {return (STRING);}
+\} {
+    return O_END;
+};
 
-{OPENBRA} {return (OPENBRA);}
-{CLOSEBRA} {return (CLOSEBRA);}
-{OPENPAR} {return (OPENPAR);}
-{CLOSEPAR} {return (CLOSEPAR);}
-{OPENARRAY} {return (OPENARRAY);}
-{CLOSEARRAY} {return (CLOSEARRAY);}
-{STRINGSYMBOL} {return (STRINGSYMBOL);}
-{COMMA} {return (COMMA);}
-{DOUBLEPOINT} {return (DOUBLEPOINT);}
-{DIGIT1to9} {return (DIGIT1to9);}
-{DIGIT} {return (DIGIT);}
-{DIGITS} {return (DIGITS);}
-{INT} {return (INT);}
-{FRAC} {return (FRAC);}
-{EXP} {return (EXP);}
-{E} {return (E);}
-{HEX_DIGIT} {return (HEX_DIGIT);}
-{NUMBER} {return (NUMBER);}
-{TRUE_J} {return (TRUE_J);}
-{FALSE_J} {return (FALSE_J);}
-{NULL_J} {return (NULL_J);}
-{TAG} {return (TAG);}
+\[ {
+    return A_BEGIN;
+};
 
+\] {
+    return A_END;
+};
+
+, {
+    return COMMA;
+};
+: {
+    return COLON;
+};
+
+[ \t\n]+ /* ignore whitespace */;
+
+. {
+    printf("Unexpected: %c\nExiting...\n",*yytext);
+    exit(0);
+}
 %%
+char *strclone(char *str)
+{
+    int len = strlen(str);
+    char *clone = (char *)malloc(sizeof(char)*(len+1));
+    strcpy(clone,str);
+    return clone;
+}

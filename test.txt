@@ -4,14 +4,12 @@
 		"GlossDiv": {
             "title": "S",
 			"GlossList": {
-                "GlossEntry": {
-                    "ID": "123",
-					"SortAs": "SGML",
-					"GlossTerm": "Standard Generalized Markup Language",
-					"Acronym": "SGML",
-					"Abbrev": "ISO 88791986",
-					"GlossSee": "markup"
-                }
+                "ID": "123",
+				"SortAs": "SGML",
+				"GlossTerm": "Standard Generalized Markup Language",
+				"Acronym": "SGML",
+				"Abbrev": "ISO 88791986",
+				"GlossSee": "markup"
             }
         }
     }
