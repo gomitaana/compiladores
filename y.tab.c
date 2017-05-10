@@ -1286,7 +1286,7 @@ printf("%s",(yyvsp[0]));
 #line 44 "json.y" /* yacc.c:1646  */
     {
     (yyval) = (char *)malloc(sizeof(char)*(strlen((yyvsp[-2]))+1+strlen((yyvsp[0]))+1+strlen((yyvsp[-2]))+1));
-    sprintf((yyval),"%s>%s</%s>\n",(yyvsp[-2]),(yyvsp[0]),(yyvsp[-2]));
+    sprintf((yyval),"%s>%s</%s> ",(yyvsp[-2]),(yyvsp[0]),(yyvsp[-2]));
   }
 #line 1292 "y.tab.c" /* yacc.c:1646  */
     break;

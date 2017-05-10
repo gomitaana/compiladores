@@ -43,7 +43,7 @@ MEMBERS: PAIR {
 ;
 PAIR: STRING COLON VALUE {
     $$ = (char *)malloc(sizeof(char)*(strlen($1)+1+strlen($3)+1+strlen($1)+1));
-    sprintf($$,"%s>%s</%s>\n",$1,$3,$1);
+    sprintf($$,"%s>%s</%s> ",$1,$3,$1);
   }
 ;
 ARRAY: A_BEGIN A_END {
